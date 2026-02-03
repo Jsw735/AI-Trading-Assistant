@@ -1,0 +1,73 @@
+{
+  "account": {
+    "total_capital": 1000,
+    "position_size": 50,
+    "max_loss_per_trade_pct": 1.0,
+    "max_daily_loss_pct": 3.0,
+    "risk_reward_ratio": 2.0
+  },
+  "filters": {
+    "min_price": 5.0,
+    "max_price": 200.0,
+    "min_avg_volume": 1000000,
+    "max_float_millions": 200,
+    "min_market_cap_millions": 500
+  },
+  "signals": {
+    "momentum_period": 14,
+    "rsi_period": 14,
+    "rsi_overbought": 70,
+    "rsi_oversold": 30,
+    "volume_surge_threshold_pct": 150,
+    "relative_strength_threshold_pct": 5.0,
+    "atr_multiplier": 2.0
+  },
+  "instruments": {
+    "enable_equities": true,
+    "enable_options": true,
+    "enable_crypto": true,
+    "markets": ["S&P 500", "Small-Cap", "OTC", "Crypto"]
+  },
+  "sectors": {
+    "selected_sectors": ["Tech", "Healthcare", "Finance"],
+    "sector_comparison_etfs": {
+      "Tech": "XLK",
+      "Healthcare": "XLV",
+      "Finance": "XLF",
+      "Energy": "XLE",
+      "Industrial": "XLI"
+    },
+    "min_relative_strength_vs_sector_pct": 5.0
+  },
+  "news_catalysts": {
+    "ai_news_sentiment_weight": 25,
+    "min_news_count_7days": 1,
+    "keyword_filters": ["earnings", "acquisition", "FDA approval", "product launch"],
+    "enable_earnings_calendar": true,
+    "catalyst_weight_in_score_pct": 15
+  },
+  "alerts": {
+    "alert_email": "your_email@example.com",
+    "score_threshold_to_alert": 75,
+    "alert_frequency": "immediate"
+  },
+  "refresh": {
+    "refresh_interval_minutes": 5,
+    "market_hours_only": true,
+    "premarket_start_time": "07:00",
+    "regular_hours_start": "09:30",
+    "regular_hours_end": "16:00"
+  },
+  "data_sources": {
+    "price_volume": "polygon",
+    "news_catalysts": "finnhub",
+    "fundamentals": "finnhub",
+    "polygon_api_key": "YOUR_POLYGON_API_KEY",
+    "finnhub_api_key": "YOUR_FINNHUB_API_KEY"
+  },
+  "output": {
+    "excel_file": "data/outputs/trading_signals.xlsx",
+    "include_history_report": true,
+    "overwrite_history": true
+  }
+}
