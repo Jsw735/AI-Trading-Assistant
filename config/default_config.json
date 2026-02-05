@@ -20,7 +20,10 @@
     "rsi_oversold": 30,
     "volume_surge_threshold_pct": 150,
     "relative_strength_threshold_pct": 5.0,
-    "atr_multiplier": 2.0
+    "atr_multiplier": 2.0,
+    "min_composite_score": 40,
+    "max_acceptable_risk_score": 75,
+    "max_signals_per_run": 10
   },
   "instruments": {
     "enable_equities": true,

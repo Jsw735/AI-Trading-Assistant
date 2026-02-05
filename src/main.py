@@ -58,11 +58,17 @@ def run_trading_analysis():
         fetcher = DataFetcher(config)
         market_data = fetcher.fetch_all_data()
         
+        logger.info(f"  - Fetched {len(market_data.get('prices', {}))} price quotes")
+        logger.info(f"  - Fetched {sum(len(v) for v in market_data.get('news', {}).values())} news items")
+        logger.info(f"  - Fetched {len(market_data.get('fundamentals', {}))} fundamentals")
+        logger.info(f"  - Fetched {len(market_data.get('sectors', {}))} sector ETFs")
+        
         # 3. Process signals
         logger.info("Processing signals...")
-        processor = SignalProcessor(config, market_data)
-        signals = processor.generate_signals()
-        signals_ranked = processor.rank_signals(signals)
+        processor = SignalProcessor(config)
+        signals_ranked = processor.process_data(market_data)
+        
+        logger.info(f"  - Generated {len(signals_ranked)} ranked signals")
         
         # 4. Generate Excel
         logger.info("Generating Excel output...")
@@ -71,6 +77,9 @@ def run_trading_analysis():
         
         logger.info(f"Output written to: {output_file}")
         print(f"\n✓ Analysis complete! Output: {output_file}")
+        print(f"\nTop signals generated:")
+        for i, signal in enumerate(signals_ranked[:5], 1):
+            print(f"  {i}. {signal['ticker']}: Score {signal['composite_score']}/100")
         
         # 5. Send alerts (if configured)
         # TODO: Implement alert logic

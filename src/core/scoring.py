@@ -11,9 +11,9 @@ from typing import Dict, List, Tuple
 class ScoringEngine:
     """Calculates composite scores for trading signals."""
     
-    def __init__(self, config: dict):
+    def __init__(self, config: dict = None):
         """Initialize with configuration."""
-        self.config = config
+        self.config = config or {}
         self.weights = {
             'momentum': 0.25,
             'volume': 0.20,
@@ -22,7 +22,7 @@ class ScoringEngine:
             'catalysts': 0.15
         }
     
-    def calculate_momentum_score(self, rsi: float, atr_val: float) -> float:
+    def calculate_momentum_score(self, rsi: float, atr_val: float = None) -> float:
         """
         Calculate momentum score based on RSI.
         RSI 0-100 normalized to 0-100 score.
